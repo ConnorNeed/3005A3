@@ -24,19 +24,20 @@ def getAllStudents():
 
 def addStudent(first_name, last_name, email, enrollment_date):
     cur.execute(f"""INSERT INTO {TABLENAME} (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s);""",
-                (TABLENAME, first_name, last_name, email, enrollment_date))
+                (first_name, last_name, email, enrollment_date))
 def updateStudentEmail(student_id, new_email):
     cur.execute(f"UPDATE {TABLENAME} SET email = '{new_email}' WHERE student_id = {student_id};")
 
 def deleteStudent(student_id):
     cur.execute(f"DELETE FROM {TABLENAME} WHERE student_id={student_id};")
 
+
+#testing
 getAllStudents()
-# addStudent("Connor", "Needham", "connor@email.com", datetime.date(2024, 3, 18))
+#addStudent("Connor", "Needham", "connor@email.com", datetime.date(2024, 3, 18))
+#updateStudentEmail(1, "johnd@email.com")
+deleteStudent(3)
 getAllStudents()
-updateStudentEmail(13, "jd@email.com")
-getAllStudents()
-deleteStudent(16)
 
 # commit and close connection
 connection.commit()
